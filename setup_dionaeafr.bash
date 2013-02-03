@@ -67,7 +67,16 @@ sudo sed -i 's:/opt/dionaea/var/dionaea/logsql.sqlite:/var/dionaea/logsql.sqlite
 sudo chown -R nobody:nogroup /var/DionaeaFR/
 
 # Installing the init script
-sudo wget https://raw.github.com/parthsantpurkar/honeypot-setup-script/master/init/dionaeafr -O /etc/init.d/dionaeafr
-sudo chmod +x /etc/init.d/dionaeafr
-sudo update-rc.d dionaeafr defaults
-sudo /etc/init.d/dionaeafr start
+#sudo wget https://raw.github.com/parthsantpurkar/honeypot-setup-script/master/init/dionaeafr -O /etc/init.d/dionaeafr
+#sudo chmod +x /etc/init.d/dionaeafr
+#sudo update-rc.d dionaeafr defaults
+#sudo /etc/init.d/dionaeafr start
+
+# Installing supervisord which contains a section to 
+# autostart our DionaeaFR server.
+
+sudo easy_install supervisor
+sudo wget https://raw.github.com/parthsantpurkar/honeypot-setup-script/master/templates/supervisord.conf.tmpl -O /etc/supervisord.conf
+supervisord -c /etc/supervisord.conf
+echo "\nDone!\n"
+
