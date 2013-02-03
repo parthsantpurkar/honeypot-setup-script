@@ -77,6 +77,6 @@ sudo chown -R nobody:nogroup /var/DionaeaFR/
 
 sudo easy_install supervisor
 sudo wget https://raw.github.com/parthsantpurkar/honeypot-setup-script/master/templates/supervisord.conf.tmpl -O /etc/supervisord.conf
-supervisord -c /etc/supervisord.conf
+sudo supervisord -c /etc/supervisord.conf
 echo "\nDone!\n"
 
