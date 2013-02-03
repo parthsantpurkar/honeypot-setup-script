@@ -1,16 +1,15 @@
 #!/bin/bash
 
-sudo apt-get install git
-sudo apt-get install python-pip
-pip install Django
-pip install pygeoip
-pip install django-pagination
-pip install django-tables2
-pip install django-compressor
-pip install django-htmlmin
+sudo apt-get install -y git python-pip
+sudo pip install Django
+sudo pip install pygeoip
+sudo pip install django-pagination
+sudo pip install django-tables2
+sudo pip install django-compressor
+sudo pip install django-htmlmin
 
 # Django tables2 simplefilter
-pip install -e https://github.com/benjiec/django-tables2-simplefilter
+sudo pip install -e https://github.com/benjiec/django-tables2-simplefilter
 #SubnetTree:
 git clone git://git.bro-ids.org/pysubnettree.git
 cd pysubnettree
@@ -33,7 +32,7 @@ sudo python setup.py install
 
 
 # 2. Installing nodejs via package manager
-sudo add-apt-repository ppa:chris-lea/node.js
+sudo add-apt-repository -y ppa:chris-lea/node.js
 sudo apt-get update
 sudo apt-get install nodejs npm
 
@@ -44,14 +43,14 @@ sudo apt-get install python-netaddr
 cd /var
 
 # Getting DionaeaFR [the front end for Dionaea]
-git clone git://github.com/RootingPuntoEs/DionaeaFR.git
+sudo git clone git://github.com/RootingPuntoEs/DionaeaFR.git
 
 # GeoIP AND GeoLiteCity
-wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
-wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
+sudo wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
+sudo wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
 
-gunzip GeoLiteCity.dat.gz
-gunzip GeoIP.dat.gz
+sudo gunzip GeoLiteCity.dat.gz
+sudo gunzip GeoIP.dat.gz
 
 sudo mv GeoIP.dat DionaeaFR/DionaeaFR/static
 sudo mv GeoLiteCity.dat DionaeaFR/DionaeaFR/static
