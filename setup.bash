@@ -106,3 +106,5 @@ sudo /etc/init.d/kippo start
 sudo /etc/init.d/p0f start
 sudo /etc/init.d/dionaea start
 
+#install DionaeaFR from setup_dionaea.bash
+wget -q https://raw.github.com/parthsantpurkar/honeypot-setup-script/master/setup_dionaeafr.bash -O /tmp/setup_dionaeafr.bash && bash /tmp/setup_dionaeafr.bash
