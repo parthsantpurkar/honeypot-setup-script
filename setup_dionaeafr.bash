@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install -y git python-pip
+sudo apt-get install -y git python-pip g++
 sudo pip install Django
 sudo pip install pygeoip
 sudo pip install django-pagination
@@ -9,8 +9,14 @@ sudo pip install django-compressor
 sudo pip install django-htmlmin
 
 # Django tables2 simplefilter
-sudo pip install -e https://github.com/benjiec/django-tables2-simplefilter
-#SubnetTree:
+cd /tmp
+git clone git://github.com/benjiec/django-tables2-simplefilter.git
+cd django-tables2-simplefilter
+sudo python setup.py install
+#sudo pip install -e https://github.com/benjiec/django-tables2-simplefilter
+
+# SubnetTree:
+cd /tmp
 git clone git://git.bro-ids.org/pysubnettree.git
 cd pysubnettree
 sudo python setup.py install
@@ -56,5 +62,5 @@ sudo mv GeoIP.dat DionaeaFR/DionaeaFR/static
 sudo mv GeoLiteCity.dat DionaeaFR/DionaeaFR/static
 
 cd /var/DionaeaFR
-python manage.py collectstatic
-
+sudo python manage.py collectstatic
+sudo sed -i 's:/opt/dionaea/var/dionaea/logsql.sqlite:/var/dionaea/logsql.sqlite:g' /var/DionaeaFR/DionaeaFR/settings.py

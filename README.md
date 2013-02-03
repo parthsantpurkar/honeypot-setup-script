@@ -22,7 +22,7 @@ Usage
 
 Only run this if you **know what you are doing**.
 
-    wget -q https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/setup.bash -O /tmp/setup.bash && bash /tmp/setup.bash
+    wget -q https://raw.github.com/parthsantpurkar/honeypot-setup-script/master/setup.bash -O /tmp/setup.bash && bash /tmp/setup.bash
 
 Effects
 ---------------------
@@ -30,6 +30,7 @@ Effects
 * Moves SSH server from port 22 to 9000
 * Installs [Dionaea](http://dionaea.carnivore.it/), [Kippo](http://code.google.com/p/kippo/), [p0f](http://lcamtuf.coredump.cx/p0f3/#/)
 * Sets up Dionaea, Kippo and p0f as system services that run on startup
+* Sets up DionaeaFR, a front-end to visualize data from Dionaea
 
 Directory Structure
 ---------------------
@@ -37,8 +38,9 @@ Directory Structure
 * Dionaea: `/var/dionaea/`
 * Kippo: `/var/kippo/`
 * p0f: `/var/p0f/`
+* DionaeaFR: `/var/DionaeaFR`
 
 **Configuration**
 * Dionaea: /etc/dionaea
 * Kippo: /etc/kippo
-
+* DionaeaFR: `/var/DionaeaFR`
