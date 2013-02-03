@@ -27,7 +27,7 @@ Only run this if you **know what you are doing**.
 Effects
 ---------------------
 
-* Moves SSH server from port 22 to 65534
+* Moves SSH server from port 22 to 9000
 * Installs [Dionaea](http://dionaea.carnivore.it/), [Kippo](http://code.google.com/p/kippo/), [p0f](http://lcamtuf.coredump.cx/p0f3/#/)
 * Sets up Dionaea, Kippo and p0f as system services that run on startup
 
