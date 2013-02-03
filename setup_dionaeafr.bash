@@ -34,14 +34,13 @@ sudo python setup.py install
 #sudo make
 #sudo make install
 #sudo apt-get install npm
-#sudo npm install -g less
 
 
 # 2. Installing nodejs via package manager
 sudo add-apt-repository -y ppa:chris-lea/node.js
 sudo apt-get update
 sudo apt-get install nodejs npm
-
+sudo npm install -g less
 
 sudo apt-get install python-netaddr
 
@@ -64,3 +63,10 @@ sudo mv GeoLiteCity.dat DionaeaFR/DionaeaFR/static
 cd /var/DionaeaFR
 sudo python manage.py collectstatic
 sudo sed -i 's:/opt/dionaea/var/dionaea/logsql.sqlite:/var/dionaea/logsql.sqlite:g' /var/DionaeaFR/DionaeaFR/settings.py
+
+sudo chown -R nobody:nogroup /var/DionaeaFR/
+# Installing the init script
+sudo wget https://raw.githiub.com/parthsantpurkar/honeypot-setup-script/master/init/dionaeafr -O /etc/init.d/dionaeafr
+sudo chmod +x /etc/init.d/dionaeafr
+sudo update-rc.d dionaeafr defaults
+sudo /etc/init.d/dionaeafr start
