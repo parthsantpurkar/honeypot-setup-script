@@ -1,12 +1,12 @@
 #!/bin/bash
 
 sudo apt-get install -y git python-pip g++
-sudo pip install Django
-sudo pip install pygeoip
-sudo pip install django-pagination
-sudo pip install django-tables2
-sudo pip install django-compressor
-sudo pip install django-htmlmin
+sudo pip install --use-mirrors Django
+sudo pip install --use-mirrors pygeoip
+sudo pip install --use-mirrors django-pagination
+sudo pip install --use-mirrors django-tables2
+sudo pip install --use-mirrors django-compressor
+sudo pip install --use-mirrors django-htmlmin
 
 # Django tables2 simplefilter
 cd /tmp
@@ -39,10 +39,10 @@ sudo python setup.py install
 # 2. Installing nodejs via package manager
 sudo add-apt-repository -y ppa:chris-lea/node.js
 sudo apt-get update
-sudo apt-get install nodejs npm
+sudo apt-get install -y nodejs npm
 sudo npm install -g less
 
-sudo apt-get install python-netaddr
+sudo apt-get install -y python-netaddr
 
 # Installing Dionaea in /var
 cd /var
@@ -75,7 +75,7 @@ sudo chown -R nobody:nogroup /var/DionaeaFR/
 # Installing supervisord which contains a section to 
 # autostart our DionaeaFR server.
 
-sudo easy_install supervisor
+sudo pip install --use-mirrors supervisor
 sudo wget https://raw.github.com/parthsantpurkar/honeypot-setup-script/master/templates/supervisord.conf.tmpl -O /etc/supervisord.conf
 sudo supervisord -c /etc/supervisord.conf
 echo "\nDone!\n"
