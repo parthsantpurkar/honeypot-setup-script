@@ -37,7 +37,10 @@ sudo python setup.py install
 
 
 # 2. Installing nodejs via package manager
-sudo add-apt-repository -y ppa:chris-lea/node.js
+#sudo add-apt-repository -y ppa:chris-lea/node.js
+echo "deb http://ppa.launchpad.net/chris-lea/node.js/ubuntu precise main" >> /tmp/nodejs.list
+echo "deb-src http://ppa.launchpad.net/chris-lea/node.js/ubuntu precise main" >> /tmp/nodejs.list
+mv /tmp/nodejs.list /etc/apt/sources.list.d/
 sudo apt-get update
 sudo apt-get install -y nodejs npm
 sudo npm install -g less

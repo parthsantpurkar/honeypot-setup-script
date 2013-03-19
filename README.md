@@ -8,7 +8,7 @@ Currently installs and sets up:
 * kippo
 * dionaea
 * p0f
-* Glastopf
+
 
 These will all be installed as system services so running this script once should turn a vanilla install in to a robust honeypot. Aims to use useful _and secure_ defaults. 
 
@@ -29,9 +29,8 @@ Effects
 
 * Moves SSH server from port 22 to 9000
 * Installs [Dionaea](http://dionaea.carnivore.it/), [Kippo](http://code.google.com/p/kippo/), [p0f](http://lcamtuf.coredump.cx/p0f3/#/)
-* Sets up Dionaea, Kippo and p0f as system services that run on startup.
-* Sets up DionaeaFR, a front-end to visualize data from Dionaea.
-* Sets up Glastopf, a honeypot which emulates web vulnerabilities.
+* Sets up Dionaea, Kippo and p0f as system services that run on startup
+* Sets up DionaeaFR, a front-end to visualize data from Dionaea
 
 Directory Structure
 ---------------------
@@ -40,10 +39,8 @@ Directory Structure
 * Kippo: `/var/kippo/`
 * p0f: `/var/p0f/`
 * DionaeaFR: `/var/DionaeaFR`
-* Glastopf": `/var/glastopf`
 
 **Configuration**
 * Dionaea: /etc/dionaea
 * Kippo: /etc/kippo
 * DionaeaFR: `/var/DionaeaFR`
-* Glastopf: `/var/glastopf`

@@ -1,27 +1,24 @@
 #!/bin/bash
 
-sudo apt-get update
-sudo apt-get install -y git
+apt-get update
+apt-get install python2.7 python-openssl python-gevent libevent-dev python2.7-dev build-essential make python-chardet python-requests python-sqlalchemy python-lxml python-beautifulsoup mongodb python-pip python-dev python-numpy python-setuptools python-numpy-dev python-scipy libatlas-dev g++ git php5 php5-dev
+pip install --upgrade distribute
 
 cd /var
-sudo git clone https://github.com/glastopf/glastopf.git
+git clone git://github.com/glastopf/BFR.git
+cd /var/BFR
+phpize
+./configure --enable-bfr
+make && make install
+
+
+cd /var
+git clone https://github.com/glastopf/glastopf.git
 cd /var/glastopf
+python setup.py install
 
-# Installing dependencies
-sudo apt-get install -y python-numpy python-cython python-scipy python-lxml python-beautifulsoup python-setuptools python-pymongo python-chardet python-sqlalchemy python-requests
-sudo pip install --use-mirrors cssselect 
-sudo pip install --use-mirrors scikit_learn 
-sudo pip install --use-mirrors requests
 
-sudo chown -R nobody:nogroup /var/glastopf/
-
-# Getting the custom config file
-sudo wget https://raw.github.com/parthsantpurkar/honeypot-setup-script/master/templates/glastopf.cfg.tmpl -O /var/glastopf/glastopf.cfg
-
-# Getting the init.d script and install as a system service
-sudo wget https://raw.github.com/parthsantpurkar/honeypot-setup-script/master/init/glastopf -O /etc/init.d/glastopf
-sudo chmod +x /etc/init.d/glastopf
-sudo update-rc.d glastopf defaults
-# Start glastopf
-sudo /etc/init.d/glastopf start
-echo "Done!"
+cd /var
+mkdir glastopf-honeypot
+cd /var/glastopf-honeypot
+python glastopf-runner.py

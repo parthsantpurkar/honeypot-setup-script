@@ -22,12 +22,16 @@ sudo apt-get install -y p0f
 sudo mkdir /var/p0f/
 
 # dependency for add-apt-repository
+sudo aptitude install software-properties-common
 sudo apt-get install -y python-software-properties
 
 ## install dionaea ##
 
 #add dionaea repo
-sudo add-apt-repository -y ppa:honeynet/nightly
+#sudo add-apt-repository -y ppa:honeynet/nightly
+echo "deb http://ppa.launchpad.net/honeynet/nightly/ubuntu precise main" >> /tmp/dionaearepo.list
+echo "deb-src http://ppa.launchpad.net/honeynet/nightly/ubuntu precise main" >> /tmp/dionaearepo.list
+sudo mv /tmp/dionaearepo.list /etc/apt/sources.list.d/
 sudo apt-get update
 sudo apt-get install -y dionaea
 
@@ -106,9 +110,5 @@ sudo /etc/init.d/kippo start
 sudo /etc/init.d/p0f start
 sudo /etc/init.d/dionaea start
 
-#Install DionaeaFR from setup_dionaea.bash
+#install DionaeaFR from setup_dionaea.bash
 wget -q https://raw.github.com/parthsantpurkar/honeypot-setup-script/master/setup_dionaeafr.bash -O /tmp/setup_dionaeafr.bash && bash /tmp/setup_dionaeafr.bash
-
-#Install Glastopf from setup_glastopf.bash
-wget -q https://raw.github.com/parthsantpurkar/honeypot-setup-script/master/setup_glastopf.bash -O /tmp/setup_glastopf.bash && bash /tmp/setup_glastopf.bash
-
