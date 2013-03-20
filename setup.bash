@@ -2,7 +2,7 @@
 
 currentdir=`pwd`
 # update apt repositories
-sudo apt-get update
+sudo apt-get update 1>/dev/null
 
 #user iface choice
 sudo apt-get -y install python-pip gcc python-dev
@@ -33,7 +33,7 @@ sudo apt-get install -y python-software-properties
 echo "deb http://ppa.launchpad.net/honeynet/nightly/ubuntu precise main" >> /tmp/dionaearepo.list
 echo "deb-src http://ppa.launchpad.net/honeynet/nightly/ubuntu precise main" >> /tmp/dionaearepo.list
 sudo mv /tmp/dionaearepo.list /etc/apt/sources.list.d/
-sudo apt-get update
+sudo apt-get update 1>/dev/null
 sudo apt-get install -y dionaea
 
 #make directories
@@ -96,10 +96,9 @@ sudo chmod +x /etc/network/if-up.d/iptablesload
 #sudo sed -ii "s|%%IFACE%%|$iface|g" /etc/init.d/p0f
 
 sudo cp $currentdir/init/dionaea /etc/init.d/dionaea
-sudo cp $currentdir/init/kippo -O /etc/init.d/kippo
+sudo cp $currentdir/init/kippo /etc/init.d/kippo
 
 #install system services
-sudo chmod +x /etc/init.d/p0f
 sudo chmod +x /etc/init.d/dionaea
 sudo chmod +x /etc/init.d/kippo
 
@@ -109,7 +108,7 @@ sudo update-rc.d kippo defaults
 
 #start the honeypot software
 sudo /etc/init.d/kippo start
-sudo /etc/init.d/p0f start
+sudo p0f -d -o /var/p0f.log -t -q
 sudo /etc/init.d/dionaea start
 
 #install DionaeaFR from setup_dionaea.bash
