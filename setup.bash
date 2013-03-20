@@ -108,7 +108,7 @@ sudo update-rc.d kippo defaults
 
 #start the honeypot software
 sudo /etc/init.d/kippo start
-sudo p0f -d -o /var/p0f.log -t -q
+sudo p0f -i any -u root -Q /tmp/p0f.sock -q -l
 sudo /etc/init.d/dionaea start
 
 #install DionaeaFR from setup_dionaea.bash
