@@ -1,5 +1,7 @@
 #!/bin/bash
 
+currentdir=`pwd`
+# Install DionaeaFR dependencies
 sudo apt-get install -y git python-pip g++
 sudo pip install --use-mirrors Django
 sudo pip install --use-mirrors pygeoip
@@ -47,7 +49,7 @@ sudo npm install -g less
 
 sudo apt-get install -y python-netaddr
 
-# Installing Dionaea in /var
+# Installing DionaeaFR in /var
 cd /var
 
 # Getting DionaeaFR [the front end for Dionaea]
@@ -79,7 +81,7 @@ sudo chown -R nobody:nogroup /var/DionaeaFR/
 # autostart our DionaeaFR server.
 
 sudo pip install --use-mirrors supervisor
-sudo wget https://raw.github.com/parthsantpurkar/honeypot-setup-script/master/templates/supervisord.conf.tmpl -O /etc/supervisord.conf
+sudo cp $currentdir/templates/supervisord.conf.tmpl /etc/supervisord.conf
 sudo supervisord -c /etc/supervisord.conf
-echo "\nDone!\n"
+echo -e "\e[1mDone!\e[0m"
 

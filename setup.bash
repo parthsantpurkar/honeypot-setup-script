@@ -1,5 +1,6 @@
 #!/bin/bash
 
+currentdir=`pwd`
 # update apt repositories
 sudo apt-get update
 
@@ -22,7 +23,7 @@ sudo apt-get install -y p0f
 sudo mkdir /var/p0f/
 
 # dependency for add-apt-repository
-sudo aptitude install software-properties-common
+sudo aptitude install -y software-properties-common
 sudo apt-get install -y python-software-properties
 
 ## install dionaea ##
@@ -43,7 +44,8 @@ sudo mkdir -p /var/dionaea/bistreams
 sudo chown -R nobody:nogroup /var/dionaea/
 
 #edit config
-sudo wget https://raw.github.com/parthsantpurkar/honeypot-setup-script/master/templates/dionaea.conf.tmpl -O /etc/dionaea/dionaea.conf
+sudo mkdir -p /etc/dionaea
+sudo cp $currentdir/templates/dionaea.conf.tmpl /etc/dionaea/dionaea.conf
 #note that we try and strip :0 and the like from interface here
 #sudo sed -i "s|%%IFACE%%|${iface%:*}|g" /etc/dionaea/dionaea.conf
 
@@ -56,7 +58,7 @@ sudo apt-get install -y subversion python-dev openssl python-openssl python-pyas
 sudo mkdir /opt/kippo/
 sudo svn checkout http://kippo.googlecode.com/svn/trunk/ /opt/kippo/
 
-sudo wget https://raw.github.com/parthsantpurkar/honeypot-setup-script/master/templates/kippo.cfg.tmpl -O /opt/kippo/kippo.cfg
+sudo cp $currentdir/templates/kippo.cfg.tmpl /opt/kippo/kippo.cfg
 
 #add kippo user that can't login
 sudo useradd -r -s /bin/false kippo
@@ -93,8 +95,8 @@ sudo chmod +x /etc/network/if-up.d/iptablesload
 #sudo wget https://raw.github.com/parthsantpurkar/honeypot-setup-script/master/templates/p0f.init.tmpl -O /etc/init.d/p0f
 #sudo sed -ii "s|%%IFACE%%|$iface|g" /etc/init.d/p0f
 
-sudo wget https://raw.github.com/parthsantpurkar/honeypot-setup-script/master/init/dionaea -O /etc/init.d/dionaea
-sudo wget https://raw.github.com/parthsantpurkar/honeypot-setup-script/master/init/kippo -O /etc/init.d/kippo
+sudo cp $currentdir/init/dionaea /etc/init.d/dionaea
+sudo cp $currentdir/init/kippo -O /etc/init.d/kippo
 
 #install system services
 sudo chmod +x /etc/init.d/p0f
@@ -111,4 +113,5 @@ sudo /etc/init.d/p0f start
 sudo /etc/init.d/dionaea start
 
 #install DionaeaFR from setup_dionaea.bash
-wget -q https://raw.github.com/parthsantpurkar/honeypot-setup-script/master/setup_dionaeafr.bash -O /tmp/setup_dionaeafr.bash && bash /tmp/setup_dionaeafr.bash
+cd $currentdir
+$currentdir/setup_dionaeafr.bash
