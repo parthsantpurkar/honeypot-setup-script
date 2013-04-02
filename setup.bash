@@ -34,7 +34,7 @@ echo "deb http://ppa.launchpad.net/honeynet/nightly/ubuntu precise main" >> /tmp
 echo "deb-src http://ppa.launchpad.net/honeynet/nightly/ubuntu precise main" >> /tmp/dionaearepo.list
 sudo mv /tmp/dionaearepo.list /etc/apt/sources.list.d/
 sudo apt-get update 1>/dev/null
-sudo apt-get install -y dionaea
+sudo apt-get install -y --force-yes dionaea
 
 #make directories
 sudo mkdir -p /var/dionaea/wwwroot
@@ -102,13 +102,12 @@ sudo cp $currentdir/init/kippo /etc/init.d/kippo
 sudo chmod +x /etc/init.d/dionaea
 sudo chmod +x /etc/init.d/kippo
 
-sudo update-rc.d p0f defaults
 sudo update-rc.d dionaea defaults
 sudo update-rc.d kippo defaults
 
 #start the honeypot software
 sudo /etc/init.d/kippo start
-sudo p0f -i any -u root -Q /tmp/p0f.sock -q -l
+sudo p0f -i any -u ubuntu -Q /tmp/p0f.sock -d -o /var/p0f.log -q -l -N -p -r -M
 sudo /etc/init.d/dionaea start
 
 #install DionaeaFR from setup_dionaea.bash
